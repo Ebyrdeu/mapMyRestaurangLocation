@@ -9,7 +9,8 @@ import {
 } from '@tabler/icons';
 import {useStylesDashboardPage} from "../styles/DashboardPage.styles.js";
 import {useLogout} from "../hooks/useLogout.js";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import {useMapEvents} from "react-leaflet";
 
 
 
@@ -28,28 +29,32 @@ function NavbarLink({ icon: Icon, label, active, onClick, link }) {
 
 
 
-export function Sidebar() {
+export const Sidebar = () => {
+	const {uid, type} = useParams();
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 	const {logout} = useLogout();
-	const [active, setActive] = useState(2);
+
+
+	const [active, setActive] = useState(type);
+
 	const [mockdata, setMockdata] = useState([
-		{ icon: IconHome2, label: 'Home', linkToPage: '/dashboard/:uid/:type'},
-		{ icon: IconMap2, label: 'Map', linkToPage: '/dashboard/:uid/:type' },
-		{ icon: IconSettings, label: 'Settings', linkToPage: '/dashboard/:uid/:type' },
+		{ icon: IconHome2, label: 'Home', linkToPage: `/dashboard/${uid}/home`, action: 'home'},
+		{ icon: IconMap2, label: 'Map', linkToPage: `/dashboard/${uid}/map`, action: 'map' },
+		{ icon: IconSettings, label: 'Settings', linkToPage: `/dashboard/${uid}/settings`, action: 'settings' },
 	]);
 
-	const links = mockdata.map((link, index) => (
+	const links = mockdata.map((link) => (
 		<NavbarLink
 			{...link}
 			key={link.label}
 			link={link.linkToPage}
-			active={index === active}
-			onClick={() => setActive(index)}
+			active={link.action === active}
+			onClick={() => setActive(link.action)}
 		/>
 	));
 
 	return (
-		<Navbar height={'100vh'} width={{ base: 80 }} p="md">
+		<Navbar height={'100vh'} width={{ base: 80}} p="md" style={{zIndex: 99990000}}>
 			<Center>
 				<Avatar variant="filled" radius="xl" size="lg" />
 			</Center>
@@ -77,3 +82,4 @@ export function Sidebar() {
 		</Navbar>
 	);
 }
+

@@ -17,7 +17,7 @@ export const useCollection = (locationCollection) => {
 		});
 
 		return () => unsubscribe();
-	}, [locationCollection]);
+	}, []);
 
 	return {
 		data,

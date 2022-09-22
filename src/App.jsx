@@ -12,7 +12,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<StartPage/>}/>
 					<Route path="/auth/:type" element={<SignUpPage/>}/>
-					<Route path="/dashBoard/:uid" element={<DashboardPage/>} />
+					<Route path="/dashBoard/:uid/:type" element={<DashboardPage/>} />
 					<Route path="/*" element={<NotFoundPage/>}/>
 				</Routes>
 			</div>
