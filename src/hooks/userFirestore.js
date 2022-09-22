@@ -23,10 +23,7 @@ export const userFirestore = () => {
 
 
 	return {
-		addNewLocationForRestaurang,
-		deleteNewLocationForRestaurang,
-		isLoading,
-		error
+		addNewLocationForRestaurang, deleteNewLocationForRestaurang, isLoading, error
 	};
 };
 

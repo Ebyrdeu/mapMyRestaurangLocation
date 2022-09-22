@@ -16,7 +16,7 @@ export const useCollection = (locationCollection) => {
 			return setData(docs);
 		});
 
-		return  () => unsubscribe();
+		return () => unsubscribe();
 	}, [locationCollection]);
 
 	return {

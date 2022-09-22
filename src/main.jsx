@@ -5,13 +5,11 @@ import {AuthContextProvider} from "./context/AuthContext";
 import {MantineContext} from "./context/MantineContext.jsx";
 
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-
 		<AuthContextProvider>
 			<MantineContext>
-					<App/>
+				<App/>
 			</MantineContext>
 		</AuthContextProvider>
 

@@ -13,10 +13,10 @@ export const authInitialState = {
 
 // Initializer(ala 3rd arg in dispatch) you can just ignore, because my IDE for some reason conflict with dispatch if it doesn't have it
 export const authInitializer = () => {
-		return {
-			user: null, authIsReady: false
-		}
-}
+	return {
+		user: null, authIsReady: false
+	};
+};
 
 // Very simple reducer function which do action based on type
 // first argument in useReducer

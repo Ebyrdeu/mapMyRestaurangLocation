@@ -1,10 +1,8 @@
-import {SignUpForm} from "../components/signUpForm/SignUpForm.jsx";
+import {SignForm} from "../components/SignForm/SignForm.jsx";
 
 export const SignUpPage = () => {
-	return (
-		<div>
-			<SignUpForm/>
-		</div>
-	);
+	return (<div>
+			<SignForm/>
+		</div>);
 };
 
