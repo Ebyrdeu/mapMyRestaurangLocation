@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {db} from '../firebase/config.js';
-import {addDoc, collection, deleteDoc, doc, GeoPoint} from "firebase/firestore";
+import {addDoc, collection, deleteDoc, doc, setDoc} from "firebase/firestore";
 
 export const userFirestore = () => {
 
@@ -22,9 +22,16 @@ export const userFirestore = () => {
 			.catch(e => setError(e.message));
 	};
 
+	const updateNewLocationForRestaurant = (id, data) => {
+		setIsLoading(true);
+		return setDoc(doc(db, 'locations', id), data)
+			.then(() => setIsLoading(false))
+			.catch(e => setError(e.message));
+	};
+
 
 	return {
-		addNewLocationForRestaurant, deleteNewLocationForRestaurant, isLoading, error
+		addNewLocationForRestaurant, deleteNewLocationForRestaurant, updateNewLocationForRestaurant, isLoading, error
 	};
 };
 

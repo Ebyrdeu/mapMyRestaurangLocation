@@ -1,12 +1,13 @@
 import {Button, Container, Group, Text} from '@mantine/core';
 import {Link} from "react-router-dom";
 import {useStylesStartPage} from "../styles/StartPage.styles.js";
+import {useAuthContext} from "../hooks/useAuthContext.js";
 
 
 export const StartPage = () => {
 	// Hooks
 	const {classes} = useStylesStartPage(undefined, undefined);
-
+	const {user} = useAuthContext()
 	// Render
 	return (<div className={classes.wrapper}>
 			<Container size={700} className={classes.inner}>
@@ -40,6 +41,15 @@ export const StartPage = () => {
 							variant="default"
 							className={classes.control}>
 							Login
+						</Button>
+					</Link>
+
+					<Link to={`/dashboard/${user.uid}/map`}>
+						<Button
+							size="xl"
+							variant="default"
+							className={classes.control}>
+							To Dashboard
 						</Button>
 					</Link>
 				</Group>
