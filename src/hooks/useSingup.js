@@ -18,7 +18,10 @@ export const useSignup = () => {
 		createUserWithEmailAndPassword(auth, email, password)
 			// Add name to new User
 			.then(() => updateProfile(auth.currentUser, {displayName}))
-			.catch(err => setError(err.message))
+			.catch(err => {
+				setError(err.message);
+				setIsLoading(false);
+			})
 			.finally(() => {
 				// Dispatch new data to reduced state
 				dispatch({type: 'SIGN_IN', payload: auth.currentUser});
