@@ -1,6 +1,7 @@
 import {SignUpPage} from "./pages/SignUpPage.jsx";
 import {NotFoundPage} from "./pages/NotFoundPage.jsx";
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
+import {StartPage} from "./pages/StartPage.jsx";
 
 function App() {
 	return (
@@ -8,7 +9,8 @@ function App() {
 		<Router>
 		<div className="App">
 		<Routes>
-			<Route path='/' element={<SignUpPage/>}/>
+			<Route path='/' element={<StartPage/>}/>
+			<Route path='/signup' element={<SignUpPage/>}/>
 			<Route path='/*' element={<NotFoundPage/>}/>
 		</Routes>
 	</div>
