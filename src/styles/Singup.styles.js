@@ -2,15 +2,11 @@ import {createStyles} from "@mantine/core";
 
 export const useSignUpStyles = createStyles((theme) => ({
 	wrapper: {
-		backgroundSize: 'cover',
-		backgroundImage:
-			'url(https://wallpapercave.com/wp/wp1874157.jpg)',
+		backgroundSize: 'cover', backgroundImage: 'url(https://wallpapercave.com/wp/wp1874157.jpg)',
 	},
 
 	form: {
-		borderRight: `1px solid ${
-			theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
-		}`,
+		borderRight: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]}`,
 		minHeight: '100vh',
 		maxWidth: 450,
 		paddingTop: 80,
@@ -21,16 +17,11 @@ export const useSignUpStyles = createStyles((theme) => ({
 	},
 
 	title: {
-		color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-		fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+		color: theme.colorScheme === 'dark' ? theme.white : theme.black, fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 	},
 
 	logo: {
-		color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-		width: 120,
-		display: 'block',
-		marginLeft: 'auto',
-		marginRight: 'auto',
+		color: theme.colorScheme === 'dark' ? theme.white : theme.black, width: 120, display: 'block', marginLeft: 'auto', marginRight: 'auto',
 	},
 
 	control: {
