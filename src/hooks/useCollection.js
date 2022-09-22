@@ -8,9 +8,7 @@ export const useCollection = (locationCollection) => {
 
 	useEffect(() => {
 
-		const queryRef = query(collection(db, locationCollection));
-
-		const unsubscribe = onSnapshot(queryRef, (snapshot) => {
+		const unsubscribe = onSnapshot(query(collection(db, locationCollection)), (snapshot) => {
 			const docs = snapshot.docs.map(doc => {
 				return {id: doc.id, ...doc.data()};
 			});
@@ -18,8 +16,8 @@ export const useCollection = (locationCollection) => {
 			return setData(docs);
 		});
 
-		return  unsubscribe;
-	}, []);
+		return  () => unsubscribe();
+	}, [locationCollection]);
 
 	return {
 		data,
