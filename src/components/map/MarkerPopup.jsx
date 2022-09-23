@@ -21,7 +21,7 @@ export const MarkerPopup = () => {
 	const [show, setShow] = useState(false);
 
 	// Render
-	return data.map(({coordinates, title, desc, id}) => {
+	return data.map(({coordinates, title, desc, id, createdBy}) => {
 		return (
 			<Marker key={id} position={[coordinates._lat, coordinates._long]}>
 				<Popup>
@@ -30,16 +30,22 @@ export const MarkerPopup = () => {
 							<Paper p={30} radius="sm">
 								<h4>{title}</h4>
 								<p>{desc}</p>
-								{user.uid === import.meta.env.VITE_ADMIN_ID ? (
-									<>
+								{user.uid  === import.meta.env.VITE_ADMIN_ID ? (<>
 										<Button fullWidth mt="xl" onClick={() => submit(id)}>
 											Delete Restaurant
 										</Button>
 										<Button fullWidth mt="xl" onClick={() => setShow(true)}>
 											Change Mode
 										</Button>
-									</>
-								) : null}
+									</>) : null}
+								{user.uid  === createdBy ? (<>
+									<Button fullWidth mt="xl" onClick={() => submit(id)}>
+										Delete Restaurant
+									</Button>
+									<Button fullWidth mt="xl" onClick={() => setShow(true)}>
+										Change Mode
+									</Button>
+								</>) : null}
 							</Paper>
 						)
 					}

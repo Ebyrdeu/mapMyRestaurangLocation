@@ -3,12 +3,13 @@ import {useState} from "react";
 import {GeoPoint} from "firebase/firestore";
 import {Marker, Popup, useMapEvents} from "react-leaflet";
 import {Button, Paper, TextInput} from "@mantine/core";
+import {useAuthContext} from "../../hooks/useAuthContext.js";
 
 export const LocationFinder = () => {
 
 	// Hooks
 	const {addNewLocationForRestaurant} = userFirestore();
-
+	const {user} = useAuthContext()
 	// State
 	const [geoLoc, setGeoLoc] = useState([0, 0]);
 	const [name, setName] = useState('');
@@ -28,7 +29,7 @@ export const LocationFinder = () => {
 	});
 
 // Add new Location on Submit
-	const submit = () => addNewLocationForRestaurant(name, city, desc, data);
+	const submit = () => addNewLocationForRestaurant(name, city, desc, data, user.uid);
 
 // Render
 	return (

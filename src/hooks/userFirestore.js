@@ -7,10 +7,10 @@ export const userFirestore = () => {
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const addNewLocationForRestaurant = (title, city, desc, coordinates) => {
+	const addNewLocationForRestaurant = (title, city, desc, coordinates, createdBy) => {
 		setIsLoading(true);
 
-		return addDoc(collection(db, 'locations'), {title, city, desc, coordinates})
+		return addDoc(collection(db, 'locations'), {title, city, desc, coordinates, createdBy})
 			.then(() => setIsLoading(false))
 			.catch(e => setError(e.message));
 	};
