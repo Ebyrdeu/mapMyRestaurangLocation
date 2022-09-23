@@ -2,11 +2,13 @@ import {userFirestore} from "../../hooks/userFirestore.js";
 import {useState} from "react";
 import {GeoPoint} from "firebase/firestore";
 import {Button, Paper, TextInput} from "@mantine/core";
+import {useParams} from "react-router-dom";
 
 export const EditWindow = ({id, lat, long, setShow,}) => {
 
 	// Hooks
 	const {updateNewLocationForRestaurant} = userFirestore();
+	const {uid} = useParams();
 
 	// State
 	const [title, setTitle] = useState('test12');
@@ -17,7 +19,7 @@ export const EditWindow = ({id, lat, long, setShow,}) => {
 	const updateData = (id, start, end) => {
 		setShow(false);
 		return updateNewLocationForRestaurant(id, {
-			title, city, desc, coordinates: new GeoPoint(start, end)
+			title, city, desc, coordinates: new GeoPoint(start, end), createdBy: uid
 		}, 'locations');
 	};
 
