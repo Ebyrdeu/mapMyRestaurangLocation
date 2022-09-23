@@ -3,8 +3,9 @@ import {collection, onSnapshot, query} from 'firebase/firestore';
 import {db} from '../firebase/config.js';
 
 
-export const useCollection = (locationCollection) => {
+export const useCollection = (locationCollection, _q) => {
 	const [data, setData] = useState([]);
+
 
 	useEffect(() => {
 
