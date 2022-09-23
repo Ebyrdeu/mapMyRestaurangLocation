@@ -18,6 +18,7 @@ import {useSignup} from "../../hooks/useSingup.js";
 import {useState} from "react";
 import {useSignIn} from "../../hooks/useSignIn.js";
 import {Link, useParams} from "react-router-dom";
+import {useFirestore} from "../../hooks/useFirestore.js";
 
 
 export const SignForm = () => {
@@ -34,9 +35,11 @@ export const SignForm = () => {
 	const {colorScheme, toggleColorScheme} = useMantineColorScheme();
 	const {signup, isLoadingSingUp, errorSingUp} = useSignup();
 	const {signIn, isLoadingSignIn, errorSignIn} = useSignIn();
-
+	const {addNewUser} = useFirestore();
 	// Submit Functions
-	const submitSingUp = () => signup(email, password, displayName);
+	const submitSingUp = () => {
+			return addNewUser(email, password, displayName, 'users') && signup(email, password, displayName)
+	};
 	const submitSignIn = () => signIn(email, password);
 
 	// 1 Sing Up

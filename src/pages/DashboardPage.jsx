@@ -5,12 +5,15 @@ import {AdminPanel} from "./AdminPanel";
 
 
 export const DashboardPage = () => {
+
+	//Hooks
 	const {uid, type} = useParams();
 
+	// Render
 	return (
 		<div style={{display: 'flex'}}>
 			<Sidebar/>
-			{type === 'home' ? <div children={'movie'}/> : null}
+			{type === 'home' ? <div children={'home'}/> : null}
 			{type === 'map' ? <Map/> : null}
 			{type === 'settings' ? <div children={'settings'}/> : null}
 			{type === 'admin' && uid === import.meta.env.VITE_ADMIN_ID ? <AdminPanel/> : null}

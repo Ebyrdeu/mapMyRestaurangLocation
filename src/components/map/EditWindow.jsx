@@ -1,4 +1,4 @@
-import {userFirestore} from "../../hooks/userFirestore.js";
+import {useFirestore} from "../../hooks/useFirestore.js";
 import {useState} from "react";
 import {GeoPoint} from "firebase/firestore";
 import {Button, Paper, TextInput} from "@mantine/core";
@@ -7,7 +7,7 @@ import {useParams} from "react-router-dom";
 export const EditWindow = ({id, lat, long, setShow,}) => {
 
 	// Hooks
-	const {updateNewLocationForRestaurant} = userFirestore();
+	const {updateNewLocationForRestaurant} = useFirestore();
 	const {uid} = useParams();
 
 	// State

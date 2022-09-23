@@ -1,5 +1,5 @@
 import {useParams} from "react-router-dom";
-import {userFirestore} from "../../hooks/userFirestore.js";
+import {useFirestore} from "../../hooks/useFirestore.js";
 import {useState} from "react";
 import {GeoPoint} from "firebase/firestore";
 import {Button, Container, Paper, TextInput} from "@mantine/core";
@@ -8,7 +8,7 @@ export const ModalChangeWindow = ({passId, setShow}) => {
 
 	// Hooks
 	const {uid} = useParams();
-	const {updateNewLocationForRestaurant} = userFirestore();
+	const {updateNewLocationForRestaurant} = useFirestore();
 
 	// Props
 	const {id, coordinates} = passId;
@@ -21,9 +21,8 @@ export const ModalChangeWindow = ({passId, setShow}) => {
 	// Update Function
 	const updateNewData = () => {
 		setShow(false);
-		return updateNewLocationForRestaurant(id, {
-			title, city, desc, coordinates: new GeoPoint(coordinates._lat, coordinates._long), createdBy: uid
-		});
+		return updateNewLocationForRestaurant(id, {title, city, desc, coordinates: new GeoPoint(coordinates._lat, coordinates._long), createdBy: uid
+		}, 'locations')
 	};
 
 	// Render

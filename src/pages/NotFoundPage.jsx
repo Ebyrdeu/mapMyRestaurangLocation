@@ -3,7 +3,10 @@ import {Link} from "react-router-dom";
 import {useStylesNotFoundPage} from "../styles/NotFoundPage.styles.js";
 
 export const NotFoundPage = () => {
+	// Hooks
 	const {classes} = useStylesNotFoundPage(undefined, undefined);
+
+	// Render
 	return (
 		<Container className={classes.root}>
 			<SimpleGrid spacing={80} cols={2} breakpoints={[{maxWidth: 'sm', cols: 1, spacing: 40}]}>

@@ -1,6 +1,6 @@
 // Show Already existed Markers
 import {useCollection} from "../../hooks/useCollection.js";
-import {userFirestore} from "../../hooks/userFirestore.js";
+import {useFirestore} from "../../hooks/useFirestore.js";
 import {useAuthContext} from "../../hooks/useAuthContext.js";
 import {useState} from "react";
 import {Marker, Popup} from "react-leaflet";
@@ -11,7 +11,7 @@ export const MarkerPopup = () => {
 
 	//Hooks
 	const {data} = useCollection('locations');
-	const {deleteNewLocationForRestaurant} = userFirestore();
+	const {deleteNewLocationForRestaurant} = useFirestore();
 	const {user} = useAuthContext();
 
 

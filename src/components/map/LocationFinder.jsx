@@ -1,4 +1,4 @@
-import {userFirestore} from "../../hooks/userFirestore.js";
+import {useFirestore} from "../../hooks/useFirestore.js";
 import {useState} from "react";
 import {GeoPoint} from "firebase/firestore";
 import {Marker, Popup, useMapEvents} from "react-leaflet";
@@ -9,7 +9,7 @@ import {useParams} from "react-router-dom";
 export const LocationFinder = () => {
 
 	// Hooks
-	const {addNewLocationForRestaurant, addNewRequestLocationForRestaurant, isLoading} = userFirestore();
+	const {addNewLocationForRestaurant} = useFirestore();
 	const {user} = useAuthContext();
 	const {uid} = useParams();
 	// State
@@ -31,7 +31,6 @@ export const LocationFinder = () => {
 	const map = useMapEvents(geoButton); // Home Possiotion
 
 
-
 // Add new Location on Submit
 	const adminSubmit = () => {
 		// Coordinates
@@ -42,13 +41,13 @@ export const LocationFinder = () => {
 
 	const userSubmit = () => {
 		const data = new GeoPoint(geoLoc[0], geoLoc[1]);
-		return addNewLocationForRestaurant(name, city, desc, data, user.uid, 'userLocationRequest')
-	}
+		return addNewLocationForRestaurant(name, city, desc, data, user.uid, 'userLocationRequest');
+	};
 
 
 // Turn Off/ON Button
 	const onTurnOffOn = () => {
-		 setMarkerButton(!markerButton)
+		setMarkerButton(!markerButton);
 		markerButton ? setCreateMarker({
 			click(e) {
 				return setGeoLoc([e.latlng.lat, e.latlng.lng]);
@@ -60,7 +59,7 @@ export const LocationFinder = () => {
 
 // Home Place Based on GeoPoisiton
 	const onFindOwnPlace = () => {
-		setMarkerButtonPosition(!markerButtonPosition)
+		setMarkerButtonPosition(!markerButtonPosition);
 		markerButtonPosition ? setGeoButton({
 			click() {
 				map.locate();
@@ -69,16 +68,17 @@ export const LocationFinder = () => {
 
 				map.flyTo(e.latlng, map.getZoom());
 			},
-		}) : setMarkerButtonPosition(null)
+		}) : setMarkerButtonPosition(null);
 	};
 
 // Render
 	return (<div>
 
-			<Button.Group  style={{zIndex: 999, position: 'absolute', top: 10, right: 10, cursor: 'pointer'}} p={30} radius="sm">
-				<Button variant="default" onClick={onTurnOffOn}>Marker {!markerButton ? 'ON' : 'OFF'}</Button>
-				{uid === import.meta.env.VITE_ADMIN_ID ? (	<Button variant="default" onClick={onFindOwnPlace}>Home {!markerButtonPosition ? 'ON' : 'OFF'}</Button>	) : null}
-			</Button.Group>
+		<Button.Group style={{zIndex: 999, position: 'absolute', top: 10, right: 10, cursor: 'pointer'}} p={30} radius="sm">
+			<Button variant="default" onClick={onTurnOffOn}>Marker {!markerButton ? 'ON' : 'OFF'}</Button>
+			{uid === import.meta.env.VITE_ADMIN_ID ? (
+				<Button variant="default" onClick={onFindOwnPlace}>Home {!markerButtonPosition ? 'ON' : 'OFF'}</Button>) : null}
+		</Button.Group>
 
 
 		{geoLoc === null ? null : (<Marker position={geoLoc}>
@@ -90,15 +90,15 @@ export const LocationFinder = () => {
 					           onChange={(e) => setDesc(e.target.value)}/>
 					<TextInput label="City" placeholder="Malmö" required
 					           onChange={(e) => setCity(e.target.value)}/>
-					<Button fullWidth mt="xl" onClick={uid === import.meta.env.VITE_ADMIN_ID ?  adminSubmit: userSubmit }>
-						{	uid === import.meta.env.VITE_ADMIN_ID ? "Add new Restaurant" : 'Request new Restaurant Spot' }
+					<Button fullWidth mt="xl" onClick={uid === import.meta.env.VITE_ADMIN_ID ? adminSubmit : userSubmit}>
+						{uid === import.meta.env.VITE_ADMIN_ID ? "Add new Restaurant" : 'Request new Restaurant Spot'}
 					</Button>
 				</Paper>
 			</Popup>
 		</Marker>)}
 
 		{composition === null ? null : (<Marker position={composition}>
-				<Popup>You are here</Popup>
-			</Marker>)}
+			<Popup>You are here</Popup>
+		</Marker>)}
 	</div>);
 };
