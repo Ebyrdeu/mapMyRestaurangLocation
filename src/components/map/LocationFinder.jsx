@@ -9,7 +9,7 @@ import {useParams} from "react-router-dom";
 export const LocationFinder = () => {
 
 	// Hooks
-	const {addNewLocationForRestaurant} = userFirestore();
+	const {addNewLocationForRestaurant, addNewRequestLocationForRestaurant, isLoading} = userFirestore();
 	const {user} = useAuthContext();
 	const {uid} = useParams();
 	// State
@@ -33,12 +33,17 @@ export const LocationFinder = () => {
 
 
 // Add new Location on Submit
-	const submit = () => {
+	const adminSubmit = () => {
 		// Coordinates
 		const data = new GeoPoint(geoLoc[0], geoLoc[1]);
 
-		return addNewLocationForRestaurant(name, city, desc, data, user.uid);
+		return addNewLocationForRestaurant(name, city, desc, data, user.uid, 'locations');
 	};
+
+	const userSubmit = () => {
+		const data = new GeoPoint(geoLoc[0], geoLoc[1]);
+		return addNewLocationForRestaurant(name, city, desc, data, user.uid, 'userLocationRequest')
+	}
 
 
 // Turn Off/ON Button
@@ -69,12 +74,12 @@ export const LocationFinder = () => {
 
 // Render
 	return (<div>
-		{uid === import.meta.env.VITE_ADMIN_ID ? (
-			<Button.Group style={{zIndex: 999, position: 'absolute', top: 10, right: 10}}>
+
+			<Button.Group  style={{zIndex: 999, position: 'absolute', top: 10, right: 10, cursor: 'pointer'}} p={30} radius="sm">
 				<Button variant="default" onClick={onTurnOffOn}>Marker {!markerButton ? 'ON' : 'OFF'}</Button>
-				<Button variant="default" onClick={onFindOwnPlace}>Home {!markerButtonPosition ? 'ON' : 'OFF'}</Button>
+				{uid === import.meta.env.VITE_ADMIN_ID ? (	<Button variant="default" onClick={onFindOwnPlace}>Home {!markerButtonPosition ? 'ON' : 'OFF'}</Button>	) : null}
 			</Button.Group>
-		) : null}
+
 
 		{geoLoc === null ? null : (<Marker position={geoLoc}>
 			<Popup style={{display: 'none !important'}}>
@@ -85,8 +90,8 @@ export const LocationFinder = () => {
 					           onChange={(e) => setDesc(e.target.value)}/>
 					<TextInput label="City" placeholder="Malmö" required
 					           onChange={(e) => setCity(e.target.value)}/>
-					<Button fullWidth mt="xl" onClick={submit}>
-						Add new Restaurant
+					<Button fullWidth mt="xl" onClick={uid === import.meta.env.VITE_ADMIN_ID ?  adminSubmit: userSubmit }>
+						{	uid === import.meta.env.VITE_ADMIN_ID ? "Add new Restaurant" : 'Request new Restaurant Spot' }
 					</Button>
 				</Paper>
 			</Popup>

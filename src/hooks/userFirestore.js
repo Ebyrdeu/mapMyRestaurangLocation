@@ -7,31 +7,38 @@ export const userFirestore = () => {
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const addNewLocationForRestaurant = (title, city, desc, coordinates, createdBy) => {
+	// Only For Admin
+	const addNewLocationForRestaurant = (title, city, desc, coordinates, createdBy, place) => {
 		setIsLoading(true);
 
-		return addDoc(collection(db, 'locations'), {title, city, desc, coordinates, createdBy})
+		return addDoc(collection(db, place), {title, city, desc, coordinates, createdBy})
 			.then(() => setIsLoading(false))
 			.catch(e => setError(e.message));
 	};
 
-	const deleteNewLocationForRestaurant = (id) => {
+
+
+	// For Admin and User
+	const deleteNewLocationForRestaurant = (id, place) => {
 		setIsLoading(true);
-		return deleteDoc(doc(db, 'locations', id))
+		return deleteDoc(doc(db, place, id))
 			.then(() => setIsLoading(false))
 			.catch(e => setError(e.message));
 	};
 
-	const updateNewLocationForRestaurant = (id, data) => {
+	const updateNewLocationForRestaurant = (id, data, place) => {
 		setIsLoading(true);
-		return setDoc(doc(db, 'locations', id), data)
+		return setDoc(doc(db, place, id), data)
 			.then(() => setIsLoading(false))
 			.catch(e => setError(e.message));
 	};
 
 
 	return {
-		addNewLocationForRestaurant, deleteNewLocationForRestaurant, updateNewLocationForRestaurant, isLoading, error
+		addNewLocationForRestaurant,
+		deleteNewLocationForRestaurant,
+		updateNewLocationForRestaurant,
+		isLoading, error
 	};
 };
 

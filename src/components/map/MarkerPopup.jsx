@@ -16,7 +16,7 @@ export const MarkerPopup = () => {
 
 
 	// Delete on Submit
-	const submit = (id) => deleteNewLocationForRestaurant(id);
+	const submit = (id) => deleteNewLocationForRestaurant(id, 'locations');
 
 	const [show, setShow] = useState(false);
 
