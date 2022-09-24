@@ -13,10 +13,10 @@ export const StartPage = () => {
 	return (<div className={classes.wrapper}>
 		<Container size={700} className={classes.inner}>
 			<h1 className={classes.title}>
-				A{' '}
-				<Text component="span" variant="gradient" gradient={{from: 'blue', to: 'cyan'}} inherit children={'Best'}/>
+				A Best 	Place for{' '}
+				<Text component="span" variant="gradient" gradient={{from: 'blue', to: 'cyan'}} inherit children={'Peasants'}/>
 				{' '}
-				Place to Search for Restaurant
+				to Search for Restaurant
 			</h1>
 
 			<Text className={classes.description} color="dimmed" children={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque commodi' +
