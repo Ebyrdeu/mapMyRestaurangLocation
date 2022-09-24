@@ -8,20 +8,16 @@ const AutoCompleteItem = forwardRef(
 		<div ref={ref} {...others}>
 			<Group noWrap>
 				<div>
-					<Text>{value}</Text>
-					<Text size="xs" color="dimmed">
-						{description}
-					</Text>
-					<Text size="xs" color="dimmed">
-						{geolocation._lat}°E 	{geolocation._long}°N
-					</Text>
+					<Text children={value}/>
+					<Text size="xs" color="dimmed" children={description}/>
+					<Text size="xs" color="dimmed" children={`${geolocation._lat}°E 	${geolocation._long}°N`}/>
 				</div>
 			</Group>
 		</div>
 	)
 );
 
-export const Search = () => {
+export const MapSearch = () => {
 	// Hooks
 	const {classes} = mapSearchStyles();
 	const {data} = useCollection('locations');
@@ -41,7 +37,6 @@ export const Search = () => {
 				value={completeValue}
 				onChange={setCompleteValue}
 			/>
-			<Button children={'Search'} className={classes.btn}/>
 		</div>
 	);
 };

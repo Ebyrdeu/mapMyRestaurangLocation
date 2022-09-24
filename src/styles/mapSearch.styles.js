@@ -10,8 +10,8 @@ export const mapSearchStyles = createStyles((theme) => ({
 	box : {
 		zIndex: 99999,
 		position: 'absolute',
-		left: '200px',
-		top: '40px',
+		right: '55px',
+		top: '80px',
 		display: "flex"
 	},
 	btn: {

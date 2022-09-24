@@ -3,7 +3,7 @@ import {Table} from '@mantine/core';
 import {AdminContentLocations} from "./Admin.content.locations.jsx";
 import {AdminContentUserList} from "./Admin.content.userList.jsx";
 
-export const AdminTable = ({changePreview, setShowModal, dataForModal}) => {
+export const AdminTable = ({changePreview}) => {
 
 	// Hooks
 	const {data: locationData, isLoading: locationLoading} = useCollection('locations');
@@ -22,7 +22,7 @@ export const AdminTable = ({changePreview, setShowModal, dataForModal}) => {
 			<th/>
 		</tr>
 		</thead>
-		<AdminContentLocations dataForModal={dataForModal} setShowModal={setShowModal} data={locationData} changePreview={changePreview} loading={locationLoading}/>
+		<AdminContentLocations  data={locationData} loading={locationLoading}/>
 	</>);
 
 	// Request Table
@@ -37,7 +37,7 @@ export const AdminTable = ({changePreview, setShowModal, dataForModal}) => {
 			<th/>
 		</tr>
 		</thead>
-		<AdminContentLocations data={requestedData} changePreview={changePreview} loading={requestLoading}/>
+		<AdminContentLocations data={requestedData} loading={requestLoading}/>
 	</>);
 
 	// User Table

@@ -1,12 +1,14 @@
 import {useFirestore} from "../../hooks/useFirestore.js";
 import {ActionIcon, Badge, Group} from '@mantine/core';
 import {IconPencil, IconThumbUp, IconTrash, } from '@tabler/icons';
+import {useContext} from "react";
+import {ModalContext} from "../../context/ModaContext.jsx";
 
-export const AdminContentLocations = ({data, changePreview, setShowModal, dataForModal}) => {
+export const AdminContentLocations = ({data, changePreview}) => {
 
 	// Hooks
 	const {addNewLocationForRestaurant, deleteNewLocationForRestaurant} = useFirestore();
-
+		const {dispatch} = useContext(ModalContext);
 	// Trash Button
 	const onTrashButton = (id) => changePreview === 1 ? deleteNewLocationForRestaurant(id, 'locations') : deleteNewLocationForRestaurant(id, 'userLocationRequest');
 
@@ -14,26 +16,26 @@ export const AdminContentLocations = ({data, changePreview, setShowModal, dataFo
 	const onAcceptButton = (id, coordinates, title, desc, createdBy, city) => deleteNewLocationForRestaurant(id, 'userLocationRequest') && addNewLocationForRestaurant(title, city, desc, coordinates, createdBy, 'locations');
 
 	// Render Location Data
-	const renderLocationData = data.map(({coordinates, title, desc, id, createdBy, city}) => (<tr key={id}>
+	const renderLocationData = data.map((item) => (<tr key={item.id}>
 		<td>
-			{title}
-			<p style={{fontSize: '11px'}}>{id}</p>
+			{item.title}
+			<p style={{fontSize: '11px'}}>{item.id}</p>
 		</td>
 		<td>
-			<Badge style={{display: 'block', width: 160, marginBottom: 5}} variant={'light'} children={`${coordinates._lat}° N`}/>
-			<Badge style={{display: 'block', width: 160}} variant={'light'} children={`${coordinates._long}° E`}/>
+			<Badge style={{display: 'block', width: 160, marginBottom: 5}} variant={'light'} children={`${item.coordinates._lat}° N`}/>
+			<Badge style={{display: 'block', width: 160}} variant={'light'} children={`${item.coordinates._long}° E`}/>
 		</td>
-		<td children={desc}/>
-		<td children={city}/>
-		<td children={createdBy}/>
+		<td children={item.desc}/>
+		<td children={item.city}/>
+		<td children={item.createdBy}/>
 
 		{/*Actions*/}
 		<td>
 			<Group spacing={0} position="right">
 				{changePreview === 1
 					? <ActionIcon onClick={() => {
-						dataForModal({id, coordinates, createdBy})
-						setShowModal(true)
+						dispatch({type: 'MODAL_DATA', payload: item})
+						dispatch({type: 'MODAL_STATUS', payload: true})
 					}
 					} children={<IconPencil size={18}/>}/>
 					: <ActionIcon onClick={() => onAcceptButton()} children={<IconThumbUp size={18}/>}/>}
