@@ -2,7 +2,8 @@ import {createStyles} from "@mantine/core";
 
 export const useSignUpStyles = createStyles((theme) => ({
 	wrapper: {
-		backgroundSize: 'cover', backgroundImage: 'url(https://wallpapercave.com/wp/wp1874157.jpg)',
+		backgroundSize: 'cover', backgroundImage: `url(https://wallpaperaccess.com/full/2641099.gif)`,
+		backgroundPosition: '25% 75%'
 	},
 
 	form: {
@@ -47,4 +48,9 @@ export const useSignUpStyles = createStyles((theme) => ({
 	value: {
 		lineHeight: 1,
 	},
+	singNotification: {
+		position: 'absolute',
+		top: '10px',
+		right: '10px'
+	}
 }));
