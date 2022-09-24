@@ -13,7 +13,7 @@ export const StartPage = () => {
 	return (<div className={classes.wrapper}>
 		<Container size={700} className={classes.inner}>
 			<h1 className={classes.title}>
-				A Best 	Place for{' '}
+				A Best Place for{' '}
 				<Text component="span" variant="gradient" gradient={{from: 'blue', to: 'cyan'}} inherit children={'Peasants'}/>
 				{' '}
 				to Search for Restaurant
