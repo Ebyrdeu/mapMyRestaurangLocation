@@ -22,7 +22,7 @@ export const AdminTable = ({changePreview}) => {
 			<th/>
 		</tr>
 		</thead>
-		<AdminContentLocations  data={locationData} loading={locationLoading}/>
+		<AdminContentLocations  data={locationData} changePreview={changePreview} loading={locationLoading}/>
 	</>);
 
 	// Request Table
