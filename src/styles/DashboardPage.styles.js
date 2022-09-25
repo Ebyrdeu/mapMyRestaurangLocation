@@ -17,8 +17,8 @@ export const useStylesDashboardPage = createStyles((theme) => ({
 
 	active: {
 		'&, &:hover': {
-			backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
-			color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
+			backgroundColor: theme.fn.variant({variant: 'light', color: theme.primaryColor}).background,
+			color: theme.fn.variant({variant: 'light', color: theme.primaryColor}).color,
 		},
 	},
 }));

@@ -1,6 +1,6 @@
 import {useFirestore} from "../../hooks/useFirestore.js";
 import {ActionIcon, Badge, Group} from '@mantine/core';
-import {IconPencil, IconThumbUp, IconTrash, } from '@tabler/icons';
+import {IconPencil, IconThumbUp, IconTrash,} from '@tabler/icons';
 import {useContext} from "react";
 import {ModalContext} from "../../context/ModaContext.jsx";
 
@@ -9,7 +9,7 @@ export const AdminContentLocations = ({data, changePreview}) => {
 
 	// Hooks
 	const {addNewLocationForRestaurant, deleteNewLocationForRestaurant} = useFirestore();
-		const {dispatch} = useContext(ModalContext);
+	const {dispatch} = useContext(ModalContext);
 	// Trash Button
 	const onTrashButton = (id) => changePreview === 1 ? deleteNewLocationForRestaurant(id, 'locations') : deleteNewLocationForRestaurant(id, 'requestedLocations');
 
@@ -36,11 +36,12 @@ export const AdminContentLocations = ({data, changePreview}) => {
 			<Group spacing={0} position="right">
 				{changePreview === 1
 					? <ActionIcon onClick={() => {
-						dispatch({type: 'MODAL_DATA', payload: item})
-						dispatch({type: 'MODAL_STATUS', payload: true})
+						dispatch({type: 'MODAL_DATA', payload: item});
+						dispatch({type: 'MODAL_STATUS', payload: true});
 					}
 					} children={<IconPencil size={18}/>}/>
-					: <ActionIcon onClick={() => onAcceptButton(item.id, item.coordinates, item.title, item.desc, item.createdBy, item.city)} children={<IconThumbUp size={18}/>}/>}
+					: <ActionIcon onClick={() => onAcceptButton(item.id, item.coordinates, item.title, item.desc, item.createdBy, item.city)}
+					              children={<IconThumbUp size={18}/>}/>}
 				<ActionIcon color="red" children={<IconTrash size={18} onClick={() => onTrashButton(item.id)}
 				/>}/>
 			</Group>
@@ -49,6 +50,6 @@ export const AdminContentLocations = ({data, changePreview}) => {
 
 
 	// Render
-	return  <tbody children={renderLocationData}/>;
+	return <tbody children={renderLocationData}/>;
 };
 

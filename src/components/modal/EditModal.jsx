@@ -17,21 +17,21 @@ export const EditModal = () => {
 	const [city, setCity] = useState('test12');
 
 	// props
-const {id, coordinates, createdBy} =	modalData
+	const {id, coordinates, createdBy} = modalData;
+
+	// Save on Changes
 	const handleSaveChanges = () => {
-		dispatch({type: 'MODAL_STATUS', payload: false})
+		dispatch({type: 'MODAL_STATUS', payload: false});
 		return updateNewLocationForRestaurant(id, {
 			title, city, desc, coordinates: new GeoPoint(coordinates._lat, coordinates._long), createdBy
 		}, 'locations');
 	};
 
-	return (
-		<Modal zIndex={999999999} opened={modalStatus} title="ChangeData" onClose={() => dispatch({type: 'MODAL_STATUS', payload: false})}>
+	return (<Modal zIndex={999999999} opened={modalStatus} title="ChangeData" onClose={() => dispatch({type: 'MODAL_STATUS', payload: false})}>
 			<TextInput label="Restaurant Name" placeholder="Fraus ol` de buar" required onChange={e => setTitle(e.target.value)}/>
 			<TextInput mt={10} mb={10} label="City" placeholder="you@mantine.dev" required onChange={e => setCity(e.target.value)}/>
 			<Textarea label="Description" placeholder="Lorem Ipsum" required onChange={e => setDesc(e.target.value)}/>
 			<Button fullWidth mt="xl" children={'Save Changes'} onClick={handleSaveChanges}/>
-		</Modal>
-	);
+		</Modal>);
 };
 

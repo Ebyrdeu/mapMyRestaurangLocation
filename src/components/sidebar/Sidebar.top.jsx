@@ -15,18 +15,24 @@ export const SidebarTop = () => {
 
 	//  Icon Links Data
 	const iconData = [{
-		icon: IconGauge, label: 'Admin Panel', linkToPage: `/dashboard/${uid}/admin`, action: import.meta.env.VITE_ADMIN_ID
+		icon: IconGauge,
+		label: 'Admin Panel',
+		linkToPage: `/dashboard/${uid}/admin`,
+		action: import.meta.env.VITE_ADMIN_ID
 	}, {icon: IconMap2, label: 'Map', linkToPage: `/dashboard/${uid}/map`, action: 'map'}, {
-		icon: IconSettings, label: 'Settings', linkToPage: `/dashboard/${uid}/settings`, action: 'settings'
-	},];
+		icon: IconSettings,
+		label: 'Settings',
+		linkToPage: `/dashboard/${uid}/settings`,
+		action: 'settings'
+	}];
 
 
 	// Render Icons Links
 	const links = iconData.map((link) => (<SideBarLinks
-			{...link}
-			key={link.label} link={link.linkToPage}
-			active={link.action === active}
-			onClick={() => setActive(link.action)}/>));
+		{...link}
+		key={link.label} link={link.linkToPage}
+		active={link.action === active}
+		onClick={() => setActive(link.action)}/>));
 
 	return (<>
 		<Center>

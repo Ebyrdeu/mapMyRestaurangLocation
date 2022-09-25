@@ -10,9 +10,15 @@ export const MapButton = () => {
 
 	const {markerStatus, homeStatus, dispatch} = useContext(MapContext);
 
-	const onMarkerHandler = () => dispatch({type: 'MARKER_STATUS', payload: !markerStatus});
+	const onMarkerHandler = () => {
+		dispatch({type: 'MARKER_STATUS', payload: !markerStatus})
+		dispatch({type: 'HOME_STATUS', payload: false})
+	};
 
-	const onHomeHandler = () => dispatch({type: 'HOME_STATUS', payload: !homeStatus});
+	const onHomeHandler = () => {
+		dispatch({type: 'HOME_STATUS', payload: !homeStatus})
+		dispatch({type: 'MARKER_STATUS', payload: false})
+	};
 
 	return (
 		<Button.Group className={classes.group}>

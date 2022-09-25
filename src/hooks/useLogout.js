@@ -14,9 +14,7 @@ export const useLogout = () => {
 	};
 
 	return {
-		logout,
-		error,
-		isLoading
+		logout, error, isLoading
 	};
 };
 

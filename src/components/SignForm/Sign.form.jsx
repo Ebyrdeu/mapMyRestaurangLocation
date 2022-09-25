@@ -18,11 +18,10 @@ export const SignForm = () => {
 
 	// Hooks
 	const {classes} = useSignUpStyles(undefined, undefined);
-
-
 	const {signup, isLoadingSingUp, errorSingUp} = useSignup();
 	const {signIn, isLoadingSignIn, errorSignIn} = useSignIn();
 	const {addNewUser} = useFirestore();
+
 	// Submit Functions
 	const submitSingUp = () => {
 		return addNewUser(email, password, displayName, 'users') && signup(email, password, displayName);

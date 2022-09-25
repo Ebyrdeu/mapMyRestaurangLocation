@@ -44,11 +44,7 @@ export const useFirestore = () => {
 
 
 	return {
-		addNewLocationForRestaurant,
-		deleteNewLocationForRestaurant,
-		updateNewLocationForRestaurant,
-		addNewUser,
-		isLoading, error
+		addNewLocationForRestaurant, deleteNewLocationForRestaurant, updateNewLocationForRestaurant, addNewUser, isLoading, error
 	};
 };
 

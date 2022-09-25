@@ -36,8 +36,8 @@ const CustomButtons = ({data}) => {
 	// Delete on Submit
 	const submit = (id) => deleteNewLocationForRestaurant(id, 'locations');
 	const onEdit = () => {
-			dispatch({type: 'MODAL_STATUS', payload: true})
-		dispatch({type: 'MODAL_DATA', payload: data})
+		dispatch({type: 'MODAL_STATUS', payload: true});
+		dispatch({type: 'MODAL_DATA', payload: data});
 	};
 	// Render
 	return (<>

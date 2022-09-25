@@ -1,5 +1,6 @@
 import {Tabs} from '@mantine/core';
-import  {IconUsers, IconList, IconSquarePlus} from '@tabler/icons'
+import {IconList, IconSquarePlus, IconUsers} from '@tabler/icons';
+
 export const AdminButton = ({setChangePreview}) => {
 	return (
 		<Tabs defaultValue="first" style={{marginBottom: 40, marginTop: 40}}>

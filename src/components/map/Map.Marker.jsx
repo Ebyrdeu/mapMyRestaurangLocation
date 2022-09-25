@@ -1,6 +1,8 @@
-import {Marker} from "react-leaflet";
+import {Marker, useMapEvents} from "react-leaflet";
 import {MapCustomPopup} from "./Map.CustomPopup.jsx";
 import {useCollection} from "../../hooks/useCollection.js";
+import {useContext, useEffect} from "react";
+import {MapContext} from "../../context/MapContext.jsx";
 
 export const MapMarker = () => {
 	// Hooks

@@ -11,12 +11,10 @@ export const AdminPanelPage = () => {
 
 
 	// Render
-	return (
-		<ScrollArea sx={{height: '100vh'}}>
+	return (<ScrollArea sx={{height: '100vh'}}>
 			<EditModal/>
 			<AdminButton setChangePreview={setChangePreview}/>
 			<AdminTable changePreview={changePreview}/>
-		</ScrollArea>
-	);
+		</ScrollArea>);
 };
 

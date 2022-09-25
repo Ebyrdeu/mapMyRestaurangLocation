@@ -7,8 +7,7 @@ export const NotFoundPage = () => {
 	const {classes} = useStylesNotFoundPage(undefined, undefined);
 
 	// Render
-	return (
-		<Container className={classes.root}>
+	return (<Container className={classes.root}>
 			<SimpleGrid spacing={80} cols={2} breakpoints={[{maxWidth: 'sm', cols: 1, spacing: 40}]}>
 				<Image src={'https://ui.mantine.dev/_next/static/media/image.11cd6c19.svg'} className={classes.mobileImage}/>
 				<div>
@@ -25,7 +24,6 @@ export const NotFoundPage = () => {
 				</div>
 				<Image src={'https://ui.mantine.dev/_next/static/media/image.11cd6c19.svg'} className={classes.desktopImage}/>
 			</SimpleGrid>
-		</Container>
-	);
+		</Container>);
 };
 

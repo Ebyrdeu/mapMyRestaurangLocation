@@ -1,7 +1,7 @@
 import {ColorSchemeProvider, MantineProvider} from '@mantine/core';
 import {useHotkeys, useLocalStorage} from "@mantine/hooks";
 
-
+// UI Context from Mantine
 export const MantineContext = ({children}) => {
 	const [colorScheme, setColorScheme] = useLocalStorage({
 		key: 'mantine-color-scheme',

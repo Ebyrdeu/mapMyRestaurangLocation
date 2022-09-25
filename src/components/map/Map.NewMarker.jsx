@@ -8,32 +8,30 @@ import {ModalContext} from "../../context/ModaContext.jsx";
 export const MapNewMarker = () => {
 
 	const {homeStatus, markerStatus} = useContext(MapContext);
-	const {addModalData, dispatch} = useContext(ModalContext);
-
+	const {dispatch : modalDispatch} = useContext(ModalContext);
+	const {dispatch : MapDispatch, fromHomeToSelectedLocation} = useContext(MapContext)
 	const [newMarkerCoordinates, setNewMarkerCoordinates] = useState(null);
 	const [homeCoordinates, setHomeCoordinates] = useState(null);
 
 	const map = useMapEvents(homeStatus ? {
-		click() {
+		click: () => {
 			map.locate();
-		}, locationfound(e) {
+		}, locationfound: (e) => {
 			setHomeCoordinates(e.latlng);
-
-			map.flyTo(e.latlng, map.getZoom());
+			MapDispatch({type: 'FROM', payload: [e.latlng.lat, e.latlng.lng]})
+			map.flyTo(e.latlng, 18);
 		},
 	} : null);
 
 	useMapEvents(markerStatus ? {
-		click(e) {
-			return setNewMarkerCoordinates([e.latlng.lat, e.latlng.lng]);
-		},
+		click: (e) => setNewMarkerCoordinates([e.latlng.lat, e.latlng.lng]),
 	} : null); // Set Marker
 
 
 	const ModalToData = () => {
-		dispatch({type: 'ADD_MODAL_DATA', payload:  newMarkerCoordinates})
-		dispatch({type: 'ADD_MODAL_STATUS', payload: true})
-	}
+		modalDispatch({type: 'ADD_MODAL_DATA', payload: newMarkerCoordinates});
+		modalDispatch({type: 'ADD_MODAL_STATUS', payload: true});
+	};
 
 
 	return (<>

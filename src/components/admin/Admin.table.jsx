@@ -22,7 +22,7 @@ export const AdminTable = ({changePreview}) => {
 			<th/>
 		</tr>
 		</thead>
-		<AdminContentLocations  data={locationData} changePreview={changePreview} loading={locationLoading}/>
+		<AdminContentLocations data={locationData} changePreview={changePreview} loading={locationLoading}/>
 	</>);
 
 	// Request Table
@@ -53,11 +53,10 @@ export const AdminTable = ({changePreview}) => {
 
 
 	// Render
-	return (
-		<Table sx={{width: 'calc(100vw - 80px)'}} verticalSpacing="xs">
-			{allRestaurantsTable}
-			{requestedRestaurantsTable}
-			{userList}
-		</Table>);
+	return (<Table sx={{width: 'calc(100vw - 80px)'}} verticalSpacing="xs">
+		{allRestaurantsTable}
+		{requestedRestaurantsTable}
+		{userList}
+	</Table>);
 };
 

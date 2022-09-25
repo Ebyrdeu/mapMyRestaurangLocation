@@ -8,28 +8,30 @@ import {MapMarker} from "../components/map/Map.Marker";
 import {EditModal} from "../components/modal/EditModal.jsx";
 import {MapNewMarker} from "../components/map/Map.NewMarker.jsx";
 import {AddModal} from "../components/modal/AddModal.jsx";
+import {MapFindedLocation} from "../components/map/Map.FindedLocation.jsx";
 
 export const MapPage = () => {
 
-	return (
-		<MapContextProvider>
+	return (<MapContextProvider>
 
-			{/*Widgets*/}
-			<MapButton/>
-			<MapSearch/>
-			<EditModal/>
-			<AddModal/>
-			{/*Map*/}
-			<MapContainer center={[55.608382, 13.010791]} zoom={13} style={{height: '100vh', width: 'calc(100vw - 80px)'}}>
-				<MapTileLayer/>
-				{/*Display existing Markers*/}
-				<MapMarker/>
+		{/*Widgets*/}
+		<MapButton/>
+		<MapSearch/>
+		<EditModal/>
+		<AddModal/>
+
+		{/*Map*/}
+		<MapContainer center={[55.608382, 13.010791]} zoom={12} style={{height: '100vh', width: 'calc(100vw - 80px)'}}>
+			<MapTileLayer/>
+			{/*Display existing Markers*/}
+			<MapMarker/>
+			<MapFindedLocation/>
 
 			{/*	Add new Markers*/}
-				<MapNewMarker/>
-			</MapContainer>
+			<MapNewMarker/>
+		</MapContainer>
 
-		</MapContextProvider>
-	);
+	</MapContextProvider>);
 };
+
 

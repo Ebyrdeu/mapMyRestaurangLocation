@@ -7,9 +7,8 @@ import {useAuthContext} from "../../hooks/useAuthContext.js";
 
 export const AddModal = () => {
 
-
 	// Hooks
-	const {addModalStatus,addModalData, dispatch} = useContext(ModalContext);
+	const {addModalStatus, addModalData, dispatch} = useContext(ModalContext);
 	const {addNewLocationForRestaurant, error} = useFirestore();
 	const {user} = useAuthContext();
 
@@ -19,6 +18,7 @@ export const AddModal = () => {
 	const [city, setCity] = useState('test12');
 
 
+	// Save Changes
 	const handleSaveChanges = () => {
 		if (error) return;
 		dispatch({type: 'ADD_MODAL_STATUS', payload: false});
