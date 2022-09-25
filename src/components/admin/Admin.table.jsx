@@ -7,7 +7,7 @@ export const AdminTable = ({changePreview}) => {
 
 	// Hooks
 	const {data: locationData, isLoading: locationLoading} = useCollection('locations');
-	const {data: requestedData, isLoading: requestLoading} = useCollection('userLocationRequest');
+	const {data: requestedData, isLoading: requestLoading} = useCollection('requestedLocations');
 	const {data: userData, isLoading: userLoading} = useCollection('users');
 
 	// All Table

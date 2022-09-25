@@ -9,7 +9,6 @@ export const ModalContextProvider = ({children}) => {
 
 	const [state, dispatch] = useReducer(modalReducer, modalInitialState, modalInitializer);
 
-	console.log(state.modalData);
 
 	return <ModalContext.Provider value={{...state, dispatch}} children={children}/>;
 };

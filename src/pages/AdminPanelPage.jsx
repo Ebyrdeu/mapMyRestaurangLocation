@@ -2,7 +2,7 @@ import {useState} from "react";
 import {AdminButton} from "../components/admin/Admin.button.jsx";
 import {AdminTable} from "../components/admin/Admin.table";
 import {ScrollArea} from '@mantine/core';
-import {SuperModal} from "../components/modal/SuperModal";
+import {EditModal} from "../components/modal/EditModal.jsx";
 
 export const AdminPanelPage = () => {
 
@@ -12,8 +12,8 @@ export const AdminPanelPage = () => {
 
 	// Render
 	return (
-		<ScrollArea>
-			<SuperModal/>
+		<ScrollArea sx={{height: '100vh'}}>
+			<EditModal/>
 			<AdminButton setChangePreview={setChangePreview}/>
 			<AdminTable changePreview={changePreview}/>
 		</ScrollArea>

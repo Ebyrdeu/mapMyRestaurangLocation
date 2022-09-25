@@ -6,14 +6,16 @@ import {ModalContext} from "../../context/ModaContext.jsx";
 
 export const AdminContentLocations = ({data, changePreview}) => {
 
+
 	// Hooks
 	const {addNewLocationForRestaurant, deleteNewLocationForRestaurant} = useFirestore();
 		const {dispatch} = useContext(ModalContext);
 	// Trash Button
-	const onTrashButton = (id) => changePreview === 1 ? deleteNewLocationForRestaurant(id, 'locations') : deleteNewLocationForRestaurant(id, 'userLocationRequest');
+	const onTrashButton = (id) => changePreview === 1 ? deleteNewLocationForRestaurant(id, 'locations') : deleteNewLocationForRestaurant(id, 'requestedLocations');
 
 	// Accept Button
-	const onAcceptButton = (id, coordinates, title, desc, createdBy, city) => deleteNewLocationForRestaurant(id, 'userLocationRequest') && addNewLocationForRestaurant(title, city, desc, coordinates, createdBy, 'locations');
+	const onAcceptButton = (id, coordinates, title, desc, createdBy, city) => deleteNewLocationForRestaurant(id, 'requestedLocations') && addNewLocationForRestaurant(title, city, desc, coordinates, createdBy, 'locations');
+
 
 	// Render Location Data
 	const renderLocationData = data.map((item) => (<tr key={item.id}>
@@ -38,8 +40,8 @@ export const AdminContentLocations = ({data, changePreview}) => {
 						dispatch({type: 'MODAL_STATUS', payload: true})
 					}
 					} children={<IconPencil size={18}/>}/>
-					: <ActionIcon onClick={() => onAcceptButton()} children={<IconThumbUp size={18}/>}/>}
-				<ActionIcon color="red" children={<IconTrash size={18} onClick={() => onTrashButton(id)}
+					: <ActionIcon onClick={() => onAcceptButton(item.id, item.coordinates, item.title, item.desc, item.createdBy, item.city)} children={<IconThumbUp size={18}/>}/>}
+				<ActionIcon color="red" children={<IconTrash size={18} onClick={() => onTrashButton(item.id)}
 				/>}/>
 			</Group>
 		</td>

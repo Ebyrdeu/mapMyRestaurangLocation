@@ -4,7 +4,7 @@ import {GeoPoint} from "firebase/firestore";
 import {useFirestore} from "../../hooks/useFirestore.js";
 import {ModalContext} from "../../context/ModaContext.jsx";
 
-export const SuperModal = () => {
+export const EditModal = () => {
 
 
 	// Hooks

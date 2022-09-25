@@ -9,14 +9,18 @@
 // second argument in useReducer
 export const modalInitialState = {
 	modalStatus: false,
-	modalData: {}
+	modalData: {},
+	addModalStatus: false,
+	addModalData: {}
 };
 
 // Initializer(ala 3rd arg in dispatch) you can just ignore, because my IDE for some reason conflict with dispatch if it doesn't have it
 export const modalInitializer = () => {
 	return {
 		modalStatus: false,
-		modalData: {}
+		modalData: {},
+		addModalStatus: false,
+		addModalData: {}
 	};
 };
 
@@ -33,6 +37,17 @@ export const modalReducer = (state, action) => {
 			return {
 				...state,
 				modalData: action.payload
+			};
+
+		case 'ADD_MODAL_STATUS':
+			return {
+				...state,
+				addModalStatus: action.payload,
+			};
+		case 'ADD_MODAL_DATA':
+			return {
+				...state,
+				addModalData: action.payload
 			};
 		default:
 			return state;

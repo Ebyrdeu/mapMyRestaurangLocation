@@ -1,10 +1,11 @@
-import {Autocomplete, Button, Group, Text} from '@mantine/core';
+import {Autocomplete, ActionIcon, Group, Text} from '@mantine/core';
+import  {IconSearch} from "@tabler/icons";
 import {mapSearchStyles} from "../../styles/mapSearch.styles.js";
 import {useCollection} from "../../hooks/useCollection.js";
 import {forwardRef, useState} from "react";
 
 const AutoCompleteItem = forwardRef(
-	({description, value, geolocation,  ...others}, ref) => (
+	({description, value, geolocation, ...others}, ref) => (
 		<div ref={ref} {...others}>
 			<Group noWrap>
 				<div>
@@ -17,6 +18,7 @@ const AutoCompleteItem = forwardRef(
 	)
 );
 
+
 export const MapSearch = () => {
 	// Hooks
 	const {classes} = mapSearchStyles();
@@ -26,7 +28,7 @@ export const MapSearch = () => {
 	const [completeValue, setCompleteValue] = useState('');
 
 	// Render data for search bar
-	const mapedData = data.map((item) => ({...item, value: item.title, group: item.city, description: item.desc, geolocation: item.coordinates}));
+	const mapedData = data.map((item) => ({value: item.title, group: item.city, description: item.desc, geolocation: item.coordinates}));
 
 	return (
 		<div className={classes.box}>
@@ -37,8 +39,11 @@ export const MapSearch = () => {
 				value={completeValue}
 				onChange={setCompleteValue}
 			/>
+			<ActionIcon radius='xl' variant="filled" onClick={() => console.log(completeValue)} children={<IconSearch size={20} />}/>
 		</div>
 	);
 };
+
+
 
 
